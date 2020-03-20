@@ -28,17 +28,10 @@ Example: `CosyHighlight CursorLine 16 -1 none`.
 
 ***
 # Screenshots
-![Screenshots_001](https://github.com/blongz/cosy/blob/master/screenshots/detorte_001.png)
+![Screenshots_01](https://github.com/blongz/cosy/blob/master/screenshots/cosy_01.png)
 
-![Screenshots_002](https://github.com/blongz/cosy/blob/master/screenshots/detorte_002.png)
+![Screenshots_02](https://github.com/blongz/cosy/blob/master/screenshots/cosy_02.png)
 
-![Screenshots_003](https://github.com/blongz/cosy/blob/master/screenshots/detorte_003.png)
+![Screenshots_03](https://github.com/blongz/cosy/blob/master/screenshots/cosy_03.png)
 
-![Screenshots_004](https://github.com/blongz/cosy/blob/master/screenshots/detorte_004.png)
-
-![Screenshots_005](https://github.com/blongz/cosy/blob/master/screenshots/detorte_005.png)
-
-![Screenshots_006](https://github.com/blongz/cosy/blob/master/screenshots/detorte_006.png)
-
-![Screenshots_007](https://github.com/blongz/cosy/blob/master/screenshots/detorte_007.png)
-
+![Screenshots_04](https://github.com/blongz/cosy/blob/master/screenshots/cosy_04.png)
