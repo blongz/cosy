@@ -1,14 +1,14 @@
 " Vim color file
 " Le Tan (tamlokveer@gmail.com)
-" Combination of desert and torte colorscheme for better look on both gui and
+" Variant of detorte colorscheme for better look on both gui and
 " terminal.
-" https://github.com/tamlok/detorte
+" https://github.com/tamlok/cosy
 
-if !exists('g:detorte_theme_mode')
-    let g:detorte_theme_mode = 'dark'
+if !exists('g:cosy_theme_mode')
+    let g:cosy_theme_mode = 'dark'
 endif
 
-if g:detorte_theme_mode == 'dark'
+if g:cosy_theme_mode == 'dark'
     set background=dark
 else
     set background=light
@@ -19,10 +19,10 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "detorte"
+let g:colors_name = "cosy"
 
 " Mappings from terminal color to RGB form
-let s:detorte_cterm_to_rgb = {
+let s:cosy_cterm_to_rgb = {
     \ '0':   '#000000', '1':   '#800000', '2':   '#008000', '3':   '#808000', '4':   '#000080',
     \ '5':   '#800080', '6':   '#008080', '7':   '#c0c0c0', '8':   '#808080', '9':   '#ff0000',
     \ '10':  '#00ff00', '11':  '#ffff00', '12':  '#0000ff', '13':  '#ff00ff', '14':  '#00ffff',
@@ -77,7 +77,7 @@ let s:detorte_cterm_to_rgb = {
     \ '255': '#eeeeee'}
 
 " Highlight function utility
-function! s:DetorteHL(group, fg, bg, ...)
+function! s:CosyHL(group, fg, bg, ...)
     " Arguments: group, foreground, background, attribute
 
     " Foreground
@@ -85,10 +85,10 @@ function! s:DetorteHL(group, fg, bg, ...)
     let l:guifg = ''
     if a:fg != -1
         let l:ctermfg = a:fg
-        if !has_key(s:detorte_cterm_to_rgb, a:fg)
+        if !has_key(s:cosy_cterm_to_rgb, a:fg)
             echom "warning: missing RGB info for terminal color " . a:fg
         else
-            let l:guifg = s:detorte_cterm_to_rgb[l:ctermfg]
+            let l:guifg = s:cosy_cterm_to_rgb[l:ctermfg]
         endif
     endif
 
@@ -97,10 +97,10 @@ function! s:DetorteHL(group, fg, bg, ...)
     let l:guibg = ''
     if a:bg != -1
         let l:ctermbg = a:bg
-        if !has_key(s:detorte_cterm_to_rgb, a:bg)
+        if !has_key(s:cosy_cterm_to_rgb, a:bg)
             echom "warning: missing RGB info for terminal color " . a:bg
         else
-            let l:guibg = s:detorte_cterm_to_rgb[l:ctermbg]
+            let l:guibg = s:cosy_cterm_to_rgb[l:ctermbg]
         endif
     endif
 
@@ -135,12 +135,12 @@ function! s:DetorteHL(group, fg, bg, ...)
     execute l:highlight_str
 endfunction
 
-if g:detorte_theme_mode == 'dark'
-    call s:DetorteHL('Normal', 252, 238, 'None')
+if g:cosy_theme_mode == 'dark'
+    call s:CosyHL('Normal', 252, 235, 'None')
 
     " Fix for Neovim NERDTree plugin
     if has('nvim')
-        call s:DetorteHL('NERDTreeFile', 252, -1)
+        call s:CosyHL('NERDTreeFile', 252, -1)
     endif
 
     hi Cursor   guibg=#ffff87 guifg=#005f5f ctermbg=228 ctermfg=23
@@ -174,14 +174,14 @@ if g:detorte_theme_mode == 'dark'
     hi Function gui=NONE cterm=NONE ctermfg=105 guifg=#B5A1FF
 
     " Statusline
-    call s:DetorteHL('StatusLineNormal', 16, 179, 'None')
-    call s:DetorteHL('StatusLineInsert', 16, 71, 'None')
-    call s:DetorteHL('StatusLineReplace', 16, 139, 'None')
-    call s:DetorteHL('StatusLine', 16, 179, 'None')
+    call s:CosyHL('StatusLineNormal', 16, 179, 'None')
+    call s:CosyHL('StatusLineInsert', 16, 71, 'None')
+    call s:CosyHL('StatusLineReplace', 16, 139, 'None')
+    call s:CosyHL('StatusLine', 16, 179, 'None')
     hi StatusLineNC guibg=#c2bfa5 guifg=#262626 gui=none ctermbg=144 ctermfg=235 cterm=none
 
     " Sign column
-    call s:DetorteHL('SignColumn', 184, 240, 'None')
+    call s:CosyHL('SignColumn', 184, 240, 'None')
 
     " Mode-aware cursor color
     hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
@@ -191,24 +191,24 @@ if g:detorte_theme_mode == 'dark'
 
     hi ExtraWhitespace ctermbg=202 guibg=#ff5f00
     hi TabLineSel    term=underline cterm=none ctermfg=16 ctermbg=185 guibg=#dfdf5f guifg=black gui=none
-    call s:DetorteHL('TabLine', 16, 145, 'None')
-    call s:DetorteHL('TabLineFill', 16, 145, 'None')
+    call s:CosyHL('TabLine', 16, 145, 'None')
+    call s:CosyHL('TabLineFill', 16, 145, 'None')
 
     " Syntax highlights
     hi Special  ctermfg=214 guifg=#ffaf00
     hi Comment  term=bold ctermfg=138 guifg=#af8787
-    call s:DetorteHL('Constant', 174, -1, 'None')
-    call s:DetorteHL('Identifier', 111, -1, 'None')
+    call s:CosyHL('Constant', 174, -1, 'None')
+    call s:CosyHL('Identifier', 111, -1, 'None')
     hi Statement    guifg=#ffdf5f gui=none ctermfg=221 cterm=none
-    call s:DetorteHL('PreProc', 170, -1, 'None')
-    call s:DetorteHL('Type', 78, -1, 'None')
+    call s:CosyHL('PreProc', 170, -1, 'None')
+    call s:CosyHL('Type', 78, -1, 'None')
     hi Todo	    ctermfg=118 ctermbg=124 cterm=bold guifg=#87ff00 guibg=#af0000 gui=bold
 
     " Diff mode
-    call s:DetorteHL('DiffAdd', 10, 242, 'None')
-    call s:DetorteHL('DiffChange', 253, 242, 'None')
-    call s:DetorteHL('DiffText', 253, 55, 'None')
-    call s:DetorteHL('DiffDelete', 9, 242, 'None')
+    call s:CosyHL('DiffAdd', 10, 242, 'None')
+    call s:CosyHL('DiffChange', 253, 242, 'None')
+    call s:CosyHL('DiffText', 253, 55, 'None')
+    call s:CosyHL('DiffDelete', 9, 242, 'None')
 
     " For vim-markdown plugin
     hi markdownH1   term=bold cterm=bold ctermfg=40 gui=bold guifg=#00df00
@@ -235,20 +235,20 @@ if g:detorte_theme_mode == 'dark'
 else
     " Light background
     " Originated from https://github.com/nightsense/snow
-    call s:DetorteHL('Normal', 238, 255)
+    call s:CosyHL('Normal', 238, 255)
 
     " Fix for Neovim NERDTree plugin
     if has('nvim')
-        call s:DetorteHL('NERDTreeFile', 238, -1)
+        call s:CosyHL('NERDTreeFile', 238, -1)
     endif
 
-    call s:DetorteHL('ModeMsg', 2, -1)
-    call s:DetorteHL('MoreMsg', 2, -1, "Bold")
-    call s:DetorteHL('Question', 27, -1)
-    call s:DetorteHL('NonText', 26, -1)
-    call s:DetorteHL('Title', 2, -1)
-    call s:DetorteHL('Comment', 96, -1)
-    call s:DetorteHL('CursorLineNr', 234, -1, 'Bold')
+    call s:CosyHL('ModeMsg', 2, -1)
+    call s:CosyHL('MoreMsg', 2, -1, "Bold")
+    call s:CosyHL('Question', 27, -1)
+    call s:CosyHL('NonText', 26, -1)
+    call s:CosyHL('Title', 2, -1)
+    call s:CosyHL('Comment', 96, -1)
+    call s:CosyHL('CursorLineNr', 234, -1, 'Bold')
     hi LineNr ctermfg=243 ctermbg=NONE guifg=#6d7782 guibg=NONE guisp=NONE cterm=NONE gui=NONE
     hi FoldColumn ctermfg=240 ctermbg=NONE guifg=#535c65 guibg=NONE guisp=NONE cterm=NONE gui=NONE
     hi PmenuSel ctermfg=240 ctermbg=255 guifg=#535c65 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
@@ -257,13 +257,13 @@ else
     hi VisualNOS ctermfg=243 ctermbg=231 guifg=#6d7782 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
     hi Cursor ctermfg=238 ctermbg=231 guifg=#434951 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
     hi IncSearch ctermfg=238 ctermbg=231 guifg=#434951 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
-    call s:DetorteHL('ColorColumn', -1, 253, 'None')
-    call s:DetorteHL('CursorColumn', -1, 252, 'None')
-    call s:DetorteHL('CursorLine', -1, 252, 'None')
+    call s:CosyHL('ColorColumn', -1, 253, 'None')
+    call s:CosyHL('CursorColumn', -1, 252, 'None')
+    call s:CosyHL('CursorLine', -1, 252, 'None')
     hi DiffChange ctermfg=NONE ctermbg=255 guifg=NONE guibg=#e5ebf1 guisp=NONE cterm=NONE gui=NONE
     hi Folded ctermfg=NONE ctermbg=255 guifg=NONE guibg=#e5ebf1 guisp=NONE cterm=NONE gui=NONE
     hi MatchParen ctermfg=238 ctermbg=249 guifg=#434951 guibg=#afb7c0 guisp=NONE cterm=NONE gui=NONE
-    call s:DetorteHL('Pmenu', 240, 253, 'None')
+    call s:CosyHL('Pmenu', 240, 253, 'None')
     hi QuickFixLine ctermfg=NONE ctermbg=255 guifg=NONE guibg=#e5ebf1 guisp=NONE cterm=NONE gui=NONE
     hi TabLine ctermfg=240 ctermbg=255 guifg=#535c65 guibg=#e5ebf1 guisp=NONE cterm=NONE gui=NONE
     hi ToolbarButton ctermfg=240 ctermbg=255 guifg=#535c65 guibg=#e5ebf1 guisp=NONE cterm=NONE,bold gui=NONE,bold
@@ -276,7 +276,7 @@ else
     hi SpellCap ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE guisp=#007cc3 cterm=NONE,underline gui=NONE,undercurl
     hi SpellLocal ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE guisp=#008787 cterm=NONE,underline gui=NONE,undercurl
     hi SpellRare ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE guisp=#965dae cterm=NONE,underline gui=NONE,undercurl
-    call s:DetorteHL('Type', 92, -1, 'None')
+    call s:CosyHL('Type', 92, -1, 'None')
     hi TooLong ctermfg=97 ctermbg=231 guifg=#8f63a2 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
     hi WarningMsg ctermfg=97 ctermbg=231 guifg=#8f63a2 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
     hi Warning ctermfg=97 ctermbg=231 guifg=#8f63a2 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
@@ -295,7 +295,7 @@ else
     hi Tag ctermfg=94 ctermbg=NONE guifg=#906c33 guibg=NONE guisp=NONE cterm=NONE gui=NONE
     hi DiffChanged ctermfg=94 ctermbg=231 guifg=#906c33 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
     hi DiffText ctermfg=94 ctermbg=231 guifg=#906c33 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
-    call s:DetorteHL('Search', 238, 179, 'None')
+    call s:CosyHL('Search', 238, 179, 'None')
     hi Conditional ctermfg=65 ctermbg=NONE guifg=#4d7f43 guibg=NONE guisp=NONE cterm=NONE gui=NONE
     hi Exception ctermfg=65 ctermbg=NONE guifg=#4d7f43 guibg=NONE guisp=NONE cterm=NONE gui=NONE
     hi Keyword ctermfg=65 ctermbg=NONE guifg=#4d7f43 guibg=NONE guisp=NONE cterm=NONE gui=NONE
@@ -320,41 +320,41 @@ else
     hi Visual ctermfg=32 ctermbg=231 guifg=#2b7ab2 guibg=#fbffff guisp=NONE cterm=NONE,reverse gui=NONE,reverse
 
     " Statusline
-    call s:DetorteHL('StatusLineNormal', 16, 179, 'None')
-    call s:DetorteHL('StatusLineInsert', 16, 71, 'None')
-    call s:DetorteHL('StatusLineReplace', 16, 139, 'None')
-    call s:DetorteHL('StatusLine', 16, 179, 'None')
+    call s:CosyHL('StatusLineNormal', 16, 179, 'None')
+    call s:CosyHL('StatusLineInsert', 16, 71, 'None')
+    call s:CosyHL('StatusLineReplace', 16, 139, 'None')
+    call s:CosyHL('StatusLine', 16, 179, 'None')
     hi StatusLineNC guibg=#c2bfa5 guifg=#262626 gui=none ctermbg=144 ctermfg=235 cterm=none
 
     " Mode-aware cursor color
-    call s:DetorteHL('InsertCursor', 15, 25)
+    call s:CosyHL('InsertCursor', 15, 25)
     hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
     hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
-    call s:DetorteHL('CommandCursor', 15, 1)
+    call s:CosyHL('CommandCursor', 15, 1)
 
     " For vim-markdown plugin
-    call s:DetorteHL('markdownH1', 28, -1, "Bold")
-    call s:DetorteHL('markdownH2', 28, -1, "Bold")
-    call s:DetorteHL('markdownH3', 28, -1, "Bold")
-    call s:DetorteHL('markdownH4', 28, -1, "Bold")
-    call s:DetorteHL('markdownH5', 28, -1, "Bold")
-    call s:DetorteHL('markdownH6', 28, -1, "Bold")
-    call s:DetorteHL('markdownHeadingDelimiter', 28, -1, "Bold")
-    call s:DetorteHL('markdownInlineCode', 232, 250, "None")
-    call s:DetorteHL('markdownBold', 232, -1, "Bold")
-    call s:DetorteHL('markdownBoldItalic', 232, -1, "Bold,Italic")
+    call s:CosyHL('markdownH1', 28, -1, "Bold")
+    call s:CosyHL('markdownH2', 28, -1, "Bold")
+    call s:CosyHL('markdownH3', 28, -1, "Bold")
+    call s:CosyHL('markdownH4', 28, -1, "Bold")
+    call s:CosyHL('markdownH5', 28, -1, "Bold")
+    call s:CosyHL('markdownH6', 28, -1, "Bold")
+    call s:CosyHL('markdownHeadingDelimiter', 28, -1, "Bold")
+    call s:CosyHL('markdownInlineCode', 232, 250, "None")
+    call s:CosyHL('markdownBold', 232, -1, "Bold")
+    call s:CosyHL('markdownBoldItalic', 232, -1, "Bold,Italic")
 
     " For Tagbar plugin
-    call s:DetorteHL('TagbarSignature', 6, -1)
+    call s:CosyHL('TagbarSignature', 6, -1)
 
     " For indentLine plugin
     let g:indentLine_color_term = 247
     let g:indentLine_color_gui = '#9e9e9e'
 
     " For EasyMotion plugin
-    call s:DetorteHL('EasyMotionTarget', 124, -1, 'Bold')
-    call s:DetorteHL('EasyMotionTarget2First', 20, -1, 'Bold')
-    call s:DetorteHL('EasyMotionTarget2Second', 5, -1, 'Bold')
+    call s:CosyHL('EasyMotionTarget', 124, -1, 'Bold')
+    call s:CosyHL('EasyMotionTarget2First', 20, -1, 'Bold')
+    call s:CosyHL('EasyMotionTarget2Second', 5, -1, 'Bold')
 
     " For ALE plugin
     hi link ALEErrorSign Error
@@ -362,8 +362,8 @@ else
 endif
 
 " Change highlights to a high contrast mode in dark theme mode
-function! DetorteHighContrastFn()
-    if g:detorte_theme_mode != 'dark'
+function! CosyHighContrastFn()
+    if g:cosy_theme_mode != 'dark'
         echom 'Only support dark theme mode'
         return
     endif
@@ -372,6 +372,6 @@ function! DetorteHighContrastFn()
     hi CursorLine term=NONE cterm=NONE ctermbg=237 gui=none guibg=#3a3a3a
     hi ColorColumn ctermbg=238 guibg=#444444
 endfunction
-command! DetorteHighContrast call DetorteHighContrastFn()
+command! CosyHighContrast call CosyHighContrastFn()
 
-command! -nargs=+ DetorteHighlight call s:DetorteHL(<f-args>)
+command! -nargs=+ CosyHighlight call s:CosyHL(<f-args>)

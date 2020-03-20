@@ -1,7 +1,6 @@
-# Detorte Color Scheme for Vim
-Detorte is a color scheme for Vim, which originates from built-in *desert* and *torte* color schemes. Detorte will behave mostly the same in both GUI and 256-Color terminal Vim.
-
-Detorte has both a dark theme and a light theme, which are for your choice. :)
+# Cosy Color Scheme for Vim
+基于 tamlok/detorte ，做了一些微调，去掉底色的模糊感。
+变更名称，避免插件更新时出现冲突。
 
 ***
 # Installation
